@@ -1,0 +1,15 @@
+ {% extends 'post/base.html' %}
+ {% block title %} home{% endblock %}
+ {% block content %}
+
+<div class="space-y-4">
+    {% for post in posts%}
+    <article class="p-6 bg-gray-100 rounded-xl ">
+        <h2 class="text-3xl">{{post.title}}</h2>
+        <span class="text-xs text-gray-600 block">{{post.created_at}}</span>
+        <p class="mb-6">{{post.intro}}</p>
+        <a href="{% url 'post:post_detail' post.slug %}" class="text-blue-500">read more</a>
+    </article>
+    {%endfor%}
+</div>
+ {% endblock %}

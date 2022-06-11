@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">  <!-- ... -->
+    <title>django blog {% block title %}{% endblock %}</title>
+</head>
+<body>
+  <nav class="py-6 px-8 bg-gray-800 text-white">
+      <a href="{% url 'post:frontpage' %}"> blog</a>
+  </nav>
+  <main class="py-6 px-8">
+      {% block content %}{% endblock %}
+  </main>
+  <footer class="py-8 px-8 bg-gray-800 text-gray-400">
+    <p class="text-xs">CoptRight &copy; {% now  "Y" %} - shimaa shaban</p>
+  </footer>
+</body>
+</html>

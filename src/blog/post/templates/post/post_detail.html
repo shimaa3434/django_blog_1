@@ -1,0 +1,44 @@
+{% extends 'post/base.html' %}
+{% block title %} {{post.title}}{% endblock %}
+{% block content %}
+
+
+   <article class="p-6 bg-gray-100 rounded-xl ">
+       <h2 class="text-3xl">{{post.title}}</h2>
+       <span class="text-xs text-gray-600 block">
+        <a href= '{% url "post:caregory_detail" post.category.slug %}'>{{post.category.title}}</a> | {{post.created_at}}</span>
+       <p class="mb-6 font-semibold">{{post.intro}}</p>
+       <p class="text-gray-800">{{post.body}}</p>
+   </article>
+
+<div class=" mt-4 p-6 bg-gray-100 rounded-xl ">
+    <h3 class= 'mb-4 text-xl'>comments</h3>
+    {% for comment in post.comments.all %}
+        <div class = "mb-4 w-full bg-white py-4 px-6 rounded-xl">
+            <strong>{{ comment.name}}</strong>at {{ comment.created_at|timesince}} ago<br>
+          <p class= 'text-gray-500'>  {{ comment.comment}} </p>
+        </div>
+
+    {% endfor %}
+
+    <h3 class= 'mb-4 text-xl'>add new comment</h3>
+    <form method = 'post' action = "." class= "space-y-4">
+        {% csrf_token %}
+        <div>
+            <label>Name</label><br>
+            <input  type= 'text' name= 'name' class='w-full bg-white py-4 px-6 rounded-xl'/>
+        </div>
+        <div>
+            <label>Email</label><br>
+            <input  type= 'email' name= 'email' class='w-full bg-white py-4 px-6 rounded-xl'/>
+        </div>
+        <div>
+            <label>comment</label><br>
+            <textarea  name= 'comment' class='w-full bg-white py-4 px-6 rounded-xl'></textarea>
+        </div>
+        <div>
+            <button  type= 'submit'  class='w-full py-4 px-6 rounded-xl bg-blue-800 text-white'>submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
